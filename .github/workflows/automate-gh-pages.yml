@@ -1,0 +1,23 @@
+name: Automate GH Pages
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Make changes to pull request here
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "sync: changes from zenohm/me"
+          title: Update compiled output
+          body: Sync changes from zenohm/me
+          labels: automerge
+          branch: main
